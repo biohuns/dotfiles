@@ -7,13 +7,14 @@ source $(dirname $0)/env.sh
 require fish
 
 # mkdir .config/fish
-[ ! -e $HOME/$FISH_DIR ] && mkdir -p $HOME/$FISH_DIR
+[ ! -e $HOME/.config/fish ] && mkdir -p $HOME/.config/fish
 
 # make symlink
-for f in $FISH_DIR/*
+for f in .config/fish/*
 do
     create_symlink $f
 done
 
+# set fish to default shell
 [ "$SHELL" = "$(which fish)" ] || chsh -s $(which fish)
 fish
