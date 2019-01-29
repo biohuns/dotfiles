@@ -9,7 +9,7 @@ require fish
 # mkdir .config/fish
 [ ! -e $HOME/$FISH_DIR ] && mkdir -p $HOME/$FISH_DIR
 
-# make symliny
+# make symlink
 for f in $FISH_DIR/*
 do
     create_symlink $f
