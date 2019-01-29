@@ -42,6 +42,7 @@ status --is-interactive; and source (nodenv init -|psub)
 
 # alias
 alias l 'ls'
+alias pbc 'pbcopy'
 
 # key bindings
 function fish_user_key_bindings
