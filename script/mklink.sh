@@ -2,18 +2,16 @@
 
 set -eu
 
-cd `dirname $0`/../
-DIR=`pwd`
+source $(dirname $0)/env.sh
 
 for f in .??*
 do
-    echo "$DIR$f"
     # ignore .git directory
     [ "$f" = ".git" ] && continue
     # ignore .DS_Store
     [ "$f" = ".DS_Store" ] && continue
     # ignore .config directory
-    [ "$f" = ".git" ] && continue
+    [ "$f" = ".config" ] && continue
 
-    ln -snfv "$DIR/$f" "$HOME"/"$f"
+    create_symlink $f
 done

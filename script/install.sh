@@ -13,8 +13,6 @@ brew install fish \
              z \
              tig \
              jq \
-#chsh -s /usr/local/bin/fish
-curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
 
 # gRPC
 go get -u google.golang.org/grpc
