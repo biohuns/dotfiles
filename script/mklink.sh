@@ -6,11 +6,12 @@ source $(dirname $0)/env.sh
 
 for f in .??*
 do
-    # ignore .git directory
+    # ignore git
     [ "$f" = ".git" ] && continue
+    [ "$f" = ".gitignore" ] && continue
     # ignore .DS_Store
     [ "$f" = ".DS_Store" ] && continue
-    # ignore .config directory
+    # ignore .config
     [ "$f" = ".config" ] && continue
 
     create_symlink $f
