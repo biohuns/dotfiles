@@ -19,10 +19,19 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-
+" ColorScheme
 Plugin 'blueshirts/darcula'
+
+" fish
 Plugin 'dag/vim-fish'
+
+" html
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'previm/previm'
+Plugin 'tyru/open-browser.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -69,3 +78,15 @@ set shiftwidth=4
 "set wrapscan
 "set hlsearch
 "nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+" ####################
+" ##Plugins Setting ##
+" ####################
+
+" Previm
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+" open with Google Chrome
+let g:previm_open_cmd = 'open -a Google\ Chrome'
