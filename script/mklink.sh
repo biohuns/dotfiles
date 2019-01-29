@@ -11,6 +11,8 @@ do
     [ "$f" = ".gitignore" ] && continue
     # ignore .DS_Store
     [ "$f" = ".DS_Store" ] && continue
+    # ignore .vimrc
+    [ "$f" = ".vimrc" ] && continue
     # ignore .config
     [ "$f" = ".config" ] && continue
 
