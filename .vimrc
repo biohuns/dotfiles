@@ -67,9 +67,9 @@ set number
 
 " Tab Settings
 set list listchars=tab:\▸\-
-set expandtab
-set tabstop=4
-set shiftwidth=4
+" set expandtab
+" set tabstop=4
+" set shiftwidth=4
 
 " Search Settings
 "set ignorecase
