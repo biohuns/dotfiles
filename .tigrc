@@ -1,5 +1,6 @@
 # 画面を垂直方向に分割する
 set vertical-split = yes
+set main-view = id date author commit-title:graph=yes,refs=yes
 
 # utf-8 文字で画面描画する (~でトグル)
 set line-graphics = utf-8
@@ -20,6 +21,7 @@ set ignore-case = true
 set split-view-height = 80%
 
 # マージ diff を表示する
+set diff-highlight = true
 set diff-options = -m --first-parent
 
 # マウスを有効にする
@@ -33,3 +35,4 @@ set refresh-mode = auto
 #set refresh-mode = after-command
 #set refresh-mode = periodic
 #set refresh-interval = 1
+bind generic y @sh -c "echo %(commit) | pbcopy"
