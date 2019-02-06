@@ -376,7 +376,7 @@
 	<key>FontAntialias</key>
 	<true/>
 	<key>FontHeightSpacing</key>
-	<real>0.94999999999999996</real>
+	<integer>1</integer>
 	<key>FontWidthSpacing</key>
 	<real>1</real>
 	<key>ProfileCurrentVersion</key>
@@ -440,11 +440,11 @@
 	<key>WindowTitle</key>
 	<string>~</string>
 	<key>columnCount</key>
-	<integer>119</integer>
+	<integer>84</integer>
 	<key>name</key>
 	<string>Pro</string>
 	<key>rowCount</key>
-	<integer>34</integer>
+	<integer>25</integer>
 	<key>shellExitAction</key>
 	<integer>0</integer>
 	<key>type</key>
