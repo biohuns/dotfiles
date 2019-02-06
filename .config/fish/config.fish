@@ -1,6 +1,3 @@
-# Maximize Terminal Window
-printf '\e[9;1t'
-
 ##################
 ###### Init ######
 ##################
@@ -43,9 +40,12 @@ status --is-interactive; and source (nodenv init -|psub)
 # alias
 alias l 'ls'
 alias pbc 'pbcopy'
+alias maximize "printf '\e[9;1t'"
+alias minimize "printf '\e[9;0t'"
 
 # key bindings
 function fish_user_key_bindings
+  # window size
   # peco
   bind \co peco_recentd
   bind \cr peco_select_history (commandline -b)
