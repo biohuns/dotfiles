@@ -41,6 +41,7 @@ status --is-interactive; and source (nodenv init -|psub)
 alias l 'ls'
 alias pbc 'pbcopy'
 alias maximize "printf '\e[9;1t'"
+alias mediumize "printf '\e[8;33;119t'"
 alias minimize "printf '\e[9;0t'"
 
 # key bindings
