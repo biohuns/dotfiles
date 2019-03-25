@@ -57,6 +57,7 @@ end
 # git
 alias g 'git'
 alias t 'tig'
+alias tree 'tree -N'
 
 # AWS
 alias start-session 'peco_ssm_start_session'
