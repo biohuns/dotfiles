@@ -30,8 +30,6 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'previm/previm'
-Plugin 'tyru/open-browser.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
