@@ -58,6 +58,8 @@ end
 alias g 'git'
 alias t 'tig'
 alias tree 'tree -N'
+alias mm 'cd ~/Documents/memo'
+alias readme 'open ./README.md'
 
 # AWS
 alias start-session 'peco_ssm_start_session'
