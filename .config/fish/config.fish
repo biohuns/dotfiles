@@ -10,7 +10,13 @@ if not functions -q fisher
 end
 
 ##################
-#### ENVs ########
+##### VISUAL #####
+##################
+
+set -g theme_date_format "+%Y/%m/%d %H:%M %a"
+
+##################
+###### ENV #######
 ##################
 
 set -U EDITOR vim
@@ -23,6 +29,7 @@ set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
 # golang
 set -Ux GOPATH $HOME
 set -U fish_user_paths $fish_user_paths $GOPATH/bin
+status --is-interactive; and source (goenv init -|psub)
 
 # ruby
 status --is-interactive; and source (rbenv init -|psub)
@@ -40,13 +47,15 @@ status --is-interactive; and source (nodenv init -|psub)
 # alias
 alias l 'ls'
 alias pbc 'pbcopy'
-alias maximize "printf '\e[9;1t'"
-alias mediumize "printf '\e[8;33;119t'"
-alias minimize "printf '\e[9;0t'"
+alias tree 'tree -N'
+alias mm 'cd ~/Documents/memo'
+# window size
+alias max "printf '\e[9;1t'"
+alias mid "printf '\e[8;33;119t'"
+alias min "printf '\e[9;0t'"
 
 # key bindings
 function fish_user_key_bindings
-  # window size
   # peco
   bind \co peco_recentd
   bind \cr peco_select_history (commandline -b)
@@ -57,9 +66,6 @@ end
 # git
 alias g 'git'
 alias t 'tig'
-alias tree 'tree -N'
-alias mm 'cd ~/Documents/memo'
-alias readme 'open ./README.md'
 
 # AWS
 alias start-session 'peco_ssm_start_session'
