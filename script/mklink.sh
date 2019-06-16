@@ -11,10 +11,11 @@ do
     [ "$f" = ".gitignore" ] && continue
     # ignore .DS_Store
     [ "$f" = ".DS_Store" ] && continue
-    # ignore .vimrc
-    [ "$f" = ".vimrc" ] && continue
     # ignore .config
     [ "$f" = ".config" ] && continue
 
     create_symlink $f
 done
+
+# vim
+curl https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim -o ~/.vim/colors/darcula.vim

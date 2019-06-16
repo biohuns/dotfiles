@@ -8,12 +8,6 @@
 bash script/mklink.sh
 ```
 
-### Setup Vim
-
-```console
-bash script/setup_vim.sh
-```
-
 ### Setup fish
 
 ```console
