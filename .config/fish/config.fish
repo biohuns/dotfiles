@@ -19,16 +19,21 @@ set -g theme_date_format "+%Y/%m/%d %H:%M %a"
 ###### ENV #######
 ##################
 
-set -U EDITOR vim
-set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
+set -x EDITOR vim
+set -x PATH "/usr/local/opt/openssl/bin" $PATH
 
 ##################
 ###### LANG ######
 ##################
 
 # golang
-set -Ux GOPATH $HOME
-set -U fish_user_paths $fish_user_paths $GOPATH/bin
+# Homebrew's goenv is old, use latest goenv from git.
+# https://github.com/syndbg/goenv/blob/master/INSTALL.md
+set -x GOENV_ROOT $HOME/.goenv
+set -x PATH $GOENV_ROOT/bin $PATH
+
+set -x GOPATH $HOME
+set -x PATH $GOPATH/bin $PATH
 status --is-interactive; and source (goenv init -|psub)
 
 # ruby
@@ -52,7 +57,7 @@ alias mm 'cd ~/Documents/memo'
 # window size
 alias max "printf '\e[9;1t'"
 alias mid "printf '\e[8;33;119t'"
-alias min "printf '\e[9;0t'"
+alias min "printf '\e[8;24;80t'"
 
 # key bindings
 function fish_user_key_bindings
