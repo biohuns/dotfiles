@@ -440,11 +440,11 @@
 	<key>WindowTitle</key>
 	<string>~</string>
 	<key>columnCount</key>
-	<integer>84</integer>
+	<integer>80</integer>
 	<key>name</key>
 	<string>Pro</string>
 	<key>rowCount</key>
-	<integer>25</integer>
+	<integer>24</integer>
 	<key>shellExitAction</key>
 	<integer>0</integer>
 	<key>type</key>
