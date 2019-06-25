@@ -368,7 +368,7 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
 	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
-	YXNzI0A0AAAAAAAAEBCAAoADXxAWSGFja0dlbkNvbnNvbGUtUmVndWxhctITFBUWWiRj
+	YXNzI0AyAAAAAAAAEBCAAoADXxAWSGFja0dlbkNvbnNvbGUtUmVndWxhctITFBUWWiRj
 	bGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohUXWE5TT2JqZWN0XxAPTlNLZXllZEFyY2hp
 	dmVy0RobVHJvb3SAAQgRGiMtMjc8QktSW2JpcnR2eJGWoaqxtL3P0tcAAAAAAAABAQAA
 	AAAAAAAcAAAAAAAAAAAAAAAAAAAA2Q==
@@ -376,7 +376,7 @@
 	<key>FontAntialias</key>
 	<true/>
 	<key>FontHeightSpacing</key>
-	<integer>1</integer>
+	<real>0.95266544117647056</real>
 	<key>FontWidthSpacing</key>
 	<integer>1</integer>
 	<key>ProfileCurrentVersion</key>
