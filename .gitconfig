@@ -8,7 +8,6 @@
 	attributesfile = /Users/shinobu/.gitattributes
 	autocrlf = false
 	editor = vim -c \"set fenc=utf-8\"
-	excludesfile = /Users/shinobu/.gitignore_global
 	ignorecase = false
 	precomposeunicode = true
 	quotepath = false
