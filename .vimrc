@@ -22,6 +22,7 @@ set ambiwidth=double    " □や○文字が崩れる問題を解決
 " ######### global #########
 " ##########################
 
+set clipboard+=unnamed  " OSのクリップボードを使用する
 set nobackup            " バックアップファイルを作らない
 set noswapfile          " スワップファイルを作らない
 set hidden              " バッファが編集中でもその他のファイルを開けるように
@@ -57,7 +58,7 @@ set shiftwidth=4
 set tabstop=4
 
 
-"set backspace=indent,eol,start    " バックスペースキーの有効化
+set backspace=indent,eol,start    " バックスペースキーの有効化
 " 移動コマンドを使ったとき、行頭に移動しない
 set nostartofline
 

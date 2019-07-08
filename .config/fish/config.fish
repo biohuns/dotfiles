@@ -53,6 +53,7 @@ status --is-interactive; and source (nodenv init -|psub)
 alias l 'ls'
 alias pbc 'pbcopy'
 alias tree 'tree -N'
+alias home 'cd ~'
 alias mm 'cd ~/Documents/memo'
 # window size
 alias max "printf '\e[9;1t'"
