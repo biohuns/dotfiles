@@ -45,6 +45,9 @@ status --is-interactive; and source (pyenv init -|psub)
 # node.js
 status --is-interactive; and source (nodenv init -|psub)
 
+# php
+set -x PATH $HOME/.composer/vendor/bin $PATH
+
 ##################
 ###### Tool ######
 ##################

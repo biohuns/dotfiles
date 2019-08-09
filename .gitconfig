@@ -1,20 +1,26 @@
 [alias]
-    df = diff --word-diff=color
-    root = rev-parse --show-toplevel
-    c = commit
-    ca = commit --amend
+    abort = rebase --abort
     b = branch
     ba = branch -a
     bd = branch -d
+    c = commit
+    ca = commit --amend
     co = checkout
     cob = checkout -b
-    com = checkout master
     cod = checkout develop
+    com = checkout master
+    continue = rebase --continue
     cp = cherry-pick
+    df = diff --word-diff=color
+    onto = rebase --onto
     pl = pull
+    pop = stash pop
     pr = "!f(){ git fetch upstream pull/$1/head:$1; git checkout $1; };f"
     pr-close = !git co develop && git pl && git remote prune origin | grep \"pruned\" | awk \"{print \\$3}\" | sed \"s/origin\\///\" | xargs git b -d && git ba
-    onto = rebase --onto
+    ps = push
+    psu = push -u
+    root = rev-parse --show-toplevel
+    st = stash
 [color]
     ui = auto
 [core]
@@ -30,7 +36,7 @@
 [diff "xlsx"]
     binary = true
     cachetextconv = true
-    textconv = git-xlsx-textconv
+    textconv = $GOPATH/bin/xlsx2csv
 [diff "json"]
     textconv = jq -S .
     cachetextconv = true
