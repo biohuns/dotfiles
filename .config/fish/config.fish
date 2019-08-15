@@ -63,6 +63,8 @@ alias max "printf '\e[9;1t'"
 alias mid "printf '\e[8;33;119t'"
 alias min "printf '\e[8;24;80t'"
 
+alias sshadd "ssh-add -K ~/.ssh/**/*"
+
 # key bindings
 function fish_user_key_bindings
   # peco
