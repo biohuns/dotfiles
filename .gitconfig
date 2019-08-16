@@ -2,6 +2,12 @@
     df = diff --word-diff=color
     fpr = "!f(){ git fetch upstream pull/$1/head:$1; git checkout $1; };f"
     root = rev-parse --show-toplevel
+    pl = pull
+    co = checkout
+    c = commit
+    ca = commit --amend
+    b = branch
+    ba = branch -a
     co = checkout
     cp = cherry-pick
 [color]
