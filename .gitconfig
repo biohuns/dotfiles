@@ -6,11 +6,14 @@
     b = branch
     ba = branch -a
     co = checkout
+    cob = checkout -b
+    com = checkout master
+    cod = checkout develop
     cp = cherry-pick
     pl = pull
     pr = "!f(){ git fetch upstream pull/$1/head:$1; git checkout $1; };f"
-    pr-close = !git co develop && git pl && git remote prune origin | grep \"\\[pruned\\]\" | awk \"{print $3}\" | sed \"s/origin\\///\" | xargs git b -d && git ba
-    onto = rebase --onto develop
+    pr-close = !git co develop && git pl && git remote prune origin | grep \"pruned\" | awk \"{print \\$3}\" | sed \"s/origin\\///\" | xargs git b -d && git ba
+    onto = rebase --onto
 [color]
     ui = auto
 [core]
