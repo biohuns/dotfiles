@@ -1,0 +1,40 @@
+[alias]
+	df = diff --word-diff=color
+	fpr = "!f(){ git fetch upstream pull/$1/head:$1; git checkout $1; };f"
+	pr = !"f() { git log --merges --oneline --reverse --ancestry-path $1...develop | grep 'Merge pull request #' | head -n 1; }; f"
+[color]
+	ui = auto
+[core]
+	attributesfile = /Users/shinobu/.gitattributes
+	autocrlf = false
+	editor = vim -c \"set fenc=utf-8\"
+	excludesfile = /Users/shinobu/.gitignore_global
+	ignorecase = false
+	precomposeunicode = true
+	quotepath = false
+[diff "docx"]
+	binary = true
+	cachetextconv = true
+	textconv = docx2txt
+[diff "xlsx"]
+	binary = true
+	cachetextconv = true
+	textconv = git-xlsx-textconv
+[diff "json"]
+	textconv = jq -S .
+	cachetextconv = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+	required = true
+	smudge = git-lfs smudge -- %f
+[ghq]
+	root = ~/src
+[pager]
+	diff = diff-highlight | less
+	log = diff-highlight | less
+	show = diff-highlight | less
+[user]
+	email = biohuns@gmail.com
+	name = Shinobu Nishioka
+
