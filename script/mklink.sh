@@ -20,6 +20,8 @@ create_symlink () {
 
 require fish
 
+[ ! -e "$DIR/.gitconfig_company" ] && touch "$DIR/.gitconfig_company"
+
 for f in .??*
 do
     # ignore .example
