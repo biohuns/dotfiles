@@ -40,7 +40,7 @@ curl -s https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcu
 complete ".vim/colors"
 
 # git
-[ ! -e $HOME/.config/git ] && mkdir -p "$HOME/.config/git"
+[ ! -e "$HOME/.config/git" ] && mkdir -p "$HOME/.config/git"
 for f in .config/git/*
 do
     create_symlink "$f"
