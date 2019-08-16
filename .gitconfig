@@ -19,6 +19,7 @@
     pr-close = !git co develop && git pl && git remote prune origin | grep \"pruned\" | awk \"{print \\$3}\" | sed \"s/origin\\///\" | xargs git b -d && git ba
     ps = push
     psu = push -u
+    refresh = !git rm -r --cached . && git add .
     root = rev-parse --show-toplevel
     st = stash
 [color]
