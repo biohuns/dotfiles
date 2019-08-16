@@ -1,0 +1,2 @@
+[includeIf "gitdir:path/to/company_dir/"]
+    path = ~/.gitconfig_companyname
