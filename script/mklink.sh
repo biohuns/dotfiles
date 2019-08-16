@@ -31,6 +31,8 @@ do
     [ "$f" = ".DS_Store" ] && continue
     # ignore .config
     [ "$f" = ".config" ] && continue
+    # ignore .circleci
+    [ "$f" = ".circleci" ] && continue
 
     create_symlink "$f"
 done
