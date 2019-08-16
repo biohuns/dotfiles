@@ -58,3 +58,5 @@
     file = ~/.config/git/mailmap
 [log]
     mailmap = true
+[include]
+    path = ~/.gitconfig_company
