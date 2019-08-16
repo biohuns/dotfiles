@@ -67,6 +67,7 @@ alias max "printf '\e[9;1t'"
 alias mid "printf '\e[8;33;119t'"
 alias min "printf '\e[8;24;80t'"
 
+alias update "brew update; and brew upgrade; and brew cleanup; and fisher"
 alias sshadd "ssh-add -K ~/.ssh/**/*"
 
 # key bindings
