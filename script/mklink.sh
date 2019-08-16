@@ -21,6 +21,7 @@ create_symlink () {
 require fish
 
 [ ! -e "$DIR/.gitconfig_company" ] && touch "$DIR/.gitconfig_company"
+[ ! -e "$DIR/.config/git/mailmap" ] && touch "$DIR/.config/git/mailmap"
 
 for f in .??*
 do
