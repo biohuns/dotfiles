@@ -34,6 +34,10 @@ set -x PATH $GOENV_ROOT/bin $PATH
 
 set -x GOPATH $HOME
 set -x PATH $GOPATH/bin $PATH
+# goenv で GOPATH の管理をしない
+# https://qiita.com/gimKondo/items/add08298e24ae400505e
+set -x GOENV_DISABLE_GOPATH 1
+
 status --is-interactive; and source (goenv init -|psub)
 
 # ruby
