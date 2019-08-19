@@ -60,6 +60,7 @@ set -x PATH $HOME/.composer/vendor/bin $PATH
 alias l 'ls'
 alias pbc 'pbcopy'
 alias tree 'tree -N'
+alias cdr 'cd (git root)'
 alias home 'cd ~'
 alias mm 'cd ~/Documents/memo'
 # window size

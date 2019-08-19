@@ -18,6 +18,7 @@
     pr = "!f(){ git fetch upstream pull/$1/head:$1; git checkout $1; };f"
     pr-close = !git co develop && git pl && git remote prune origin | grep \"pruned\" | awk \"{print \\$3}\" | sed \"s/origin\\///\" | xargs git b -d && git ba
     ps = push
+    pso = !git branch --contains | awk '{print $2}' | xargs git push -u origin
     psu = push -u
     refresh = !git rm -r --cached . && git add .
     root = rev-parse --show-toplevel
