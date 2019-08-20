@@ -4,8 +4,8 @@
 
 ## Usage
 
-### Make symlinks
+### Install
 
 ```console
-bash script/mklink.sh
+bash install.sh
 ```

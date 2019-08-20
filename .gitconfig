@@ -1,4 +1,5 @@
 [alias]
+    a = add
     abort = rebase --abort
     af = log --pretty=oneline --name-only
     b = branch
