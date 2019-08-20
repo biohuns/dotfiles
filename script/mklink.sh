@@ -50,6 +50,7 @@ for f in .config/git/*
 do
     create_symlink "$f"
 done
+[ ! -e "/usr/local/bin/diff-highlight" ] && ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
 
 # fish shell
 [ ! -e "$HOME/.config/fish" ] && mkdir -p "$HOME/.config/fish"
