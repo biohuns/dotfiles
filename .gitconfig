@@ -1,6 +1,6 @@
 [alias]
     abort = rebase --abort
-    allfiles = log --pretty=oneline --name-only
+    af = log --pretty=oneline --name-only
     b = branch
     ba = branch -a
     bd = branch -d
