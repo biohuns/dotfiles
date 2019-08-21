@@ -52,6 +52,7 @@ done
 # vim
 THEME="https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim"
 if [[ ! -e $HOME/.vim/colors/darcula.vim ]]; then
+    mkdir -p "$HOME/.vim/colors"
     curl -s $THEME -o ~/.vim/colors/darcula.vim
 fi
 
