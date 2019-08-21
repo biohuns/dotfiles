@@ -29,7 +29,10 @@ TOUCH_FILES=(
 
 for file in "${TOUCH_FILES[@]}"
 do
-    [[ ! -e "$DIR/$file"  ]] && touch "$DIR/$file" && echo "create:   $file"
+    if [[ ! -e $DIR/$file  ]]; then
+        touch "$DIR/$file"
+        echo "create:   $file"
+    fi
 done
 
 # make symlinks
@@ -47,12 +50,17 @@ do
 done
 
 # vim
-curl -s https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim -o ~/.vim/colors/darcula.vim
+THEME="https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim"
+if [[ ! -e $HOME/.vim/colors/darcula.vim ]]; then
+    curl -s $THEME -o ~/.vim/colors/darcula.vim
+fi
 
 complete ".vim/colors"
 
 # git
-[[ ! -e "$HOME/.config/git" ]] && mkdir -p "$HOME/.config/git"
+if [[ ! -e $HOME/.config/git ]]; then
+    mkdir -p "$HOME/.config/git"
+fi
 
 cd "$DIR" &&
 for f in .config/git/*
@@ -60,17 +68,24 @@ do
     create_symlink "$f"
 done
 
-[[ ! -e "/usr/local/bin/diff-highlight" ]] &&
+if [[ ! -e /usr/local/bin/diff-highlight ]]; then
     ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
+fi
 
 # fish shell
-[[ ! -e "$HOME/.config/fish" ]] && mkdir -p "$HOME/.config/fish"
+if [[ ! -e $HOME/.config/fish ]]; then
+    mkdir -p "$HOME/.config/fish"
+fi
 
-cd "$DIR" && for f in .config/fish/*
+cd "$DIR" &&
+for f in .config/fish/*
 do
     create_symlink "$f"
 done
 
-[[ "$SHELL" = "$(command -v fish)" ]] || (chsh -s "$(command -v fish)"; fish)
+if [[ "$SHELL" != "$(command -v fish)" ]]; then
+    chsh -s "$(command -v fish)"
+    fish
+fi
 
 echo "Success!"
