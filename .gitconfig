@@ -24,6 +24,7 @@
     psu = push -u
     refresh = !git rm -r --cached . && git add .
     root = rev-parse --show-toplevel
+    rud = reset --hard upstream/develop
     st = stash
 [color]
     ui = auto

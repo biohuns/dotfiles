@@ -7,5 +7,5 @@
 ### Install
 
 ```console
-bash install.sh
+./install.sh
 ```
