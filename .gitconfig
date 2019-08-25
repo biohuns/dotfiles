@@ -23,6 +23,8 @@
     ps = push
     pso = !git branch --contains | awk '{print $2}' | xargs git push -u origin
     psu = push -u
+    rb = rebase -i
+    rbp = rebase -ip
     refresh = !git rm -r --cached . && git add .
     root = rev-parse --show-toplevel
     rum = reset --hard upstream/master
