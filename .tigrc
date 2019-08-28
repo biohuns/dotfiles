@@ -40,7 +40,7 @@ set mailmap = yes
 ### MAIN VIEW ###
 #################
 
-set main-view = date author commit-title:graph=yes,refs=yes
+set main-view = id date author commit-title:graph=yes,refs=yes
 set main-view-date = custom
 set main-view-date-format = "%Y/%m/%d %H:%M"
 
