@@ -35,6 +35,7 @@ status --is-interactive; and source (rbenv init -|psub)
 
 # python
 status --is-interactive; and source (pyenv init -|psub)
+set -x PATH $HOME/.ebcli-virtual-env/executables $PATH
 
 # node.js
 status --is-interactive; and source (nodenv init -|psub)

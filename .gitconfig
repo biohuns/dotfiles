@@ -30,6 +30,8 @@
     rbp = rebase -ip
     refresh = !git rm -r --cached . && git add .
     root = rev-parse --show-toplevel
+    rom = reset --hard origin/master
+    rod = reset --hard origin/develop
     rum = reset --hard upstream/master
     rud = reset --hard upstream/develop
     st = stash
