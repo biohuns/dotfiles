@@ -8,6 +8,8 @@
     bD = branch -D
     c = commit
     ca = commit --amend
+    can = commit -n --amend
+    cn = commit -n
     co = checkout
     cob = checkout -b
     cod = checkout develop
