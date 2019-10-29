@@ -56,7 +56,7 @@ alias home 'cd ~'
 alias mm 'cd ~/Documents/memo'
 # window size
 alias max "printf '\e[9;1t'"
-alias mid "printf '\e[8;33;119t'"
+alias mid "printf '\e[8;28;100t'"
 alias min "printf '\e[8;24;80t'"
 
 alias update "brew update; and brew upgrade; and brew cleanup; and fisher"
