@@ -19,8 +19,6 @@ create_symlink () {
     complete "$1"
 }
 
-require fish
-
 # touch files
 TOUCH_FILES=(
     .gitconfig_company
@@ -73,20 +71,20 @@ if [[ ! -e /usr/local/bin/diff-highlight ]]; then
     ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
 fi
 
-# fish shell
-if [[ ! -e $HOME/.config/fish ]]; then
-    mkdir -p "$HOME/.config/fish"
+# powerline-shell
+if [[ ! -e $HOME/.config/powerline-shell ]]; then
+    mkdir -p "$HOME/.config/powerline-shell"
 fi
 
 cd "$DIR" &&
-for f in .config/fish/*
+for f in .config/powerline-shell/*
 do
     create_symlink "$f"
 done
 
-if [[ "$SHELL" != "$(command -v fish)" ]]; then
-    chsh -s "$(command -v fish)"
-    fish
+if [[ "$SHELL" != "$(command -v zsh)" ]]; then
+    chsh -s "$(command -v zsh)"
+    zsh
 fi
 
 echo "Success!"
