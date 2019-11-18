@@ -52,7 +52,7 @@
 [diff "xlsx"]
     binary = true
     cachetextconv = true
-    textconv = $GOPATH/bin/xlsx2csv
+    textconv = ~/bin/git-xlsx-textconv
 [diff "json"]
     textconv = jq -S .
     cachetextconv = true

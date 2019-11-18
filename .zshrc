@@ -79,6 +79,7 @@ zplug 'felixr/docker-zsh-completion'
 ## Aliases ##
 #############
 
+alias ls='ls -G'
 alias l='ls'
 alias ll='ls -l'
 alias la='ls -la'
@@ -90,6 +91,7 @@ alias pip="pip3"
 
 # git
 alias g="git"
+alias tig='TERM=xterm-256color tig'
 alias t="tig"
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
@@ -113,5 +115,5 @@ else
 fi
 
 if [[ "$TERM" != "screen-256color" ]]; then
-    max && tmux new-session
+    tmux new-session
 fi
