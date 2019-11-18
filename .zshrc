@@ -123,5 +123,5 @@ fi
 autoload -Uz compinit && compinit
 
 if [[ "$TERM" != "screen-256color" ]]; then
-    #tmux new-session
+    tmux new-session
 fi
