@@ -4,7 +4,11 @@ set -eu
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
-complete() {
+###############
+## Functions ##
+###############
+
+complete () {
     echo "complete: $1"
 }
 
@@ -19,11 +23,16 @@ create_symlink () {
     complete "$1"
 }
 
-# touch files
 TOUCH_FILES=(
     .gitconfig_company
     .config/git/mailmap
 )
+
+###############
+##  Install  ##
+###############
+
+## Create File ##
 
 for file in "${TOUCH_FILES[@]}"
 do
@@ -33,7 +42,8 @@ do
     fi
 done
 
-# make symlinks
+## Make Symlink ##
+
 cd "$DIR" &&
 for f in .??*
 do
@@ -47,7 +57,8 @@ do
     create_symlink "$f"
 done
 
-# vim
+## Vim ##
+
 THEME="https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim"
 if [[ ! -e $HOME/.vim/colors/darcula.vim ]]; then
     mkdir -p "$HOME/.vim/colors"
@@ -56,7 +67,8 @@ fi
 
 complete ".vim/colors"
 
-# git
+## Git ##
+
 if [[ ! -e $HOME/.config/git ]]; then
     mkdir -p "$HOME/.config/git"
 fi
@@ -71,7 +83,9 @@ if [[ ! -e /usr/local/bin/diff-highlight ]]; then
     ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
 fi
 
-# powerline-shell
+## powerline-shell ##
+
+require powerline-shell
 if [[ ! -e $HOME/.config/powerline-shell ]]; then
     mkdir -p "$HOME/.config/powerline-shell"
 fi
@@ -81,6 +95,8 @@ for f in .config/powerline-shell/*
 do
     create_symlink "$f"
 done
+
+## Set Shell ##
 
 if [[ "$SHELL" != "$(command -v zsh)" ]]; then
     chsh -s "$(command -v zsh)"

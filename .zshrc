@@ -2,6 +2,8 @@
 ## ZSH Preferences ##
 #####################
 
+export PATH=${HOME}/bin:/usr/local/bin:${PATH}
+
 export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 
@@ -13,7 +15,6 @@ export NVM_DIR="$HOME/.nvm"
 ## History ##
 #############
 
-HISTFILE=~/.zsh_history #履歴ファイルの設定
 HISTSIZE=1000000 # メモリに保存される履歴の件数。(保存数だけ履歴を検索できる)
 SAVEHIST=1000000 # ファイルに何件保存するか
 setopt extended_history # 実行時間とかも保存する
@@ -30,6 +31,11 @@ setopt inc_append_history # 履歴をインクリメンタルに追加
 #############
 ## Plugins ##
 #############
+
+zplug "mattn/memo", \
+    from:gh-r, \
+    as:command, \
+    use:"*darwin*amd64*"
 
 # fzf
 zplug "junegunn/fzf-bin", \
@@ -114,6 +120,8 @@ else
     zplug load
 fi
 
+autoload -Uz compinit && compinit
+
 if [[ "$TERM" != "screen-256color" ]]; then
-    tmux new-session
+    #tmux new-session
 fi
