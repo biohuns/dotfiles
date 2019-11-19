@@ -7,6 +7,8 @@ export PATH=${HOME}/bin:/usr/local/bin:${PATH}
 export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 
+export GOPATH="$HOME"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
@@ -32,10 +34,7 @@ setopt inc_append_history # 履歴をインクリメンタルに追加
 ## Plugins ##
 #############
 
-zplug "mattn/memo", \
-    from:gh-r, \
-    as:command, \
-    use:"*darwin*amd64*"
+zplug "mattn/memo", use:misc/completion.zsh
 
 # fzf
 zplug "junegunn/fzf-bin", \
