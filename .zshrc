@@ -84,6 +84,7 @@ zplug 'felixr/docker-zsh-completion'
 ## Aliases ##
 #############
 
+# general commands
 alias ls='ls -G'
 alias l='ls'
 alias ll='ls -l'
@@ -91,14 +92,22 @@ alias la='ls -la'
 alias pbc='pbcopy'
 alias tree='tree -N'
 
-alias python="python3"
-alias pip="pip3"
+# tmux
+alias tm='tmux'
+alias tma='tmux a'
+alias tmn='tmux new'
+alias tml='tmux ls'
+alias tmr='tmux source-file ~/.tmux.conf'
 
 # git
 alias g="git"
 alias tig='TERM=xterm-256color tig'
 alias t="tig"
 alias cdr='cd $(git rev-parse --show-toplevel)'
+
+# macOS Default Python
+alias python="python3"
+alias pip="pip3"
 
 # window size
 alias max="printf '\e[9;1t'"
@@ -121,6 +130,6 @@ fi
 
 autoload -Uz compinit && compinit
 
-if [[ "$TERM" != "screen-256color" ]]; then
-    tmux new-session
-fi
+#if [[ "$TERM" != "screen-256color" ]]; then
+#    tmux new-session
+#fi
