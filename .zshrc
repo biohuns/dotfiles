@@ -36,13 +36,6 @@ setopt inc_append_history # 履歴をインクリメンタルに追加
 
 zplug "mattn/memo", use:misc/completion.zsh
 
-# fzf
-zplug "junegunn/fzf-bin", \
-    from:gh-r, \
-    as:command, \
-    rename-to:fzf, \
-    use:"*darwin*amd64*"
-
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh $?)"
 }
@@ -104,6 +97,8 @@ alias g="git"
 alias tig='TERM=xterm-256color tig'
 alias t="tig"
 alias cdr='cd $(git rev-parse --show-toplevel)'
+
+alias m='memo'
 
 # macOS Default Python
 alias python="python3"
