@@ -4,14 +4,20 @@
 
 export PATH=${HOME}/bin:/usr/local/bin:${PATH}
 
+# ZPlug
 export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 
+# Go
 export GOPATH="$HOME"
 
+# NodeJS
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+
+# PHP
+export PATH=${HOME}/.composer/vendor/bin:${PATH}
 
 #############
 ## History ##
@@ -78,6 +84,7 @@ zplug 'felixr/docker-zsh-completion'
 #############
 
 # general commands
+alias ..='cd ..'
 alias ls='ls -G'
 alias l='ls'
 alias ll='ls -l'
