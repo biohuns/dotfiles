@@ -19,6 +19,10 @@ export NVM_DIR="$HOME/.nvm"
 # PHP
 export PATH=${HOME}/.composer/vendor/bin:${PATH}
 
+# Tar
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+
+
 #############
 ## History ##
 #############
@@ -115,6 +119,9 @@ alias pip="pip3"
 alias max="printf '\e[9;1t'"
 alias mid="printf '\e[8;28;100t'"
 alias min="printf '\e[8;24;80t'"
+
+# AWS
+alias instances="aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | {\"InstanceID\": .InstanceId, \"Name\": (.Tags[] | select(.Key == \"Name\").Value)} | @text' | fzf | sed -e 's/.*\"InstanceID\":\"\(.*\)\",\"Name\":.*/\1/' | pbcopy"
 
 #############
 ## Install ##
