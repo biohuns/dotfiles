@@ -83,6 +83,17 @@ bindkey '^]' anyframe-widget-cd-ghq-repository
 # docker-zsh-completion
 zplug 'felixr/docker-zsh-completion'
 
+complete-ssh-host() {
+    local host="$(command egrep -i '^Host\s+.+' $HOME/.ssh/config $(find $HOME/.ssh/conf.d -type f 2>/dev/null) | command egrep -v '[*?]' | awk '{print $2}' | sort | fzf)"
+
+    if [ ! -z "$host" ]; then
+        LBUFFER+="ssh $host"
+    fi
+    zle reset-prompt
+}
+zle -N complete-ssh-host
+bindkey '^w' complete-ssh-host
+
 #############
 ## Aliases ##
 #############
@@ -138,7 +149,3 @@ else
 fi
 
 autoload -Uz compinit && compinit
-
-#if [[ "$TERM" != "screen-256color" ]]; then
-#    tmux new-session
-#fi
