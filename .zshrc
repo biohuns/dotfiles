@@ -19,10 +19,6 @@ export NVM_DIR="$HOME/.nvm"
 # PHP
 export PATH=${HOME}/.composer/vendor/bin:${PATH}
 
-# Tar
-export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-
-
 #############
 ## History ##
 #############
@@ -44,12 +40,13 @@ setopt inc_append_history # 履歴をインクリメンタルに追加
 ## Plugins ##
 #############
 
+# memo
 zplug "mattn/memo", use:misc/completion.zsh
 
+# powerline-shell
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh $?)"
 }
-
 function install_powerline_precmd() {
   for s in ${precmd_functions[@]}; do
     if [ "$s" = "powerline_precmd" ]; then
@@ -58,7 +55,6 @@ function install_powerline_precmd() {
   done
   precmd_functions+=(powerline_precmd)
 }
-
 if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
@@ -121,10 +117,6 @@ alias t="tig"
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
 alias m='memo'
-
-# macOS Default Python
-alias python="python3"
-alias pip="pip3"
 
 # window size
 alias max="printf '\e[9;1t'"
