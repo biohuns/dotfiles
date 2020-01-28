@@ -4,12 +4,6 @@
 
 export PATH=${HOME}/bin:/usr/local/bin:${PATH}
 
-# Vim
-export EDITOR=vim
-autoload -z edit-command-line
-zle -N edit-command-line
-bindkey "^XE" edit-command-line
-
 # ZPlug
 export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
