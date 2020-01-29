@@ -24,7 +24,7 @@ create_symlink () {
 }
 
 TOUCH_FILES=(
-    .gitconfig_company
+    .gitaccounts
     .config/git/mailmap
 )
 

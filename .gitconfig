@@ -67,12 +67,9 @@
     diff = diff-highlight | less
     log = diff-highlight | less
     show = diff-highlight | less
-[user]
-    email = biohuns@gmail.com
-    name = Shinobu Nishioka
 [mailmap]
     file = ~/.config/git/mailmap
 [log]
     mailmap = true
 [include]
-    path = ~/.gitconfig_company
+    path = ~/.gitaccounts
