@@ -96,6 +96,18 @@ do
     create_symlink "$f"
 done
 
+## Karabiner-Elements
+
+if [[ ! -e $HOME/.config/karabiner ]]; then
+    mkdir -p "$HOME/.config/karabiner"
+fi
+
+cd "$DIR" &&
+for f in .config/karabiner/*
+do
+    create_symlink "$f"
+done
+
 ## Set Shell ##
 
 if [[ "$SHELL" != "$(command -v zsh)" ]]; then
