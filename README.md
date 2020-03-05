@@ -9,3 +9,8 @@
 ```console
 ./install.sh
 ```
+
+### Attention
+
+- Karabiner-Elements
+  - 日本語切り替え設定は手動で追加する
