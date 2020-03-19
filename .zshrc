@@ -9,7 +9,7 @@ export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 
 # SSH Agent
-ssh-add -q ~/.ssh/keys/*
+ssh-add -qK ~/.ssh/keys/*
 
 # Go
 export GOPATH="$HOME"
