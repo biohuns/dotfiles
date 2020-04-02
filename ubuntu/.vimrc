@@ -40,10 +40,10 @@ set autoread             " ファイル更新で自動で読み直す
 set completeopt=menuone  " 補完ウィンドウの設定
 set visualbell           " ビープ音を可視化
 set showmatch            " 括弧入力時の対応する括弧を表示
-set matchtime=3         " 対応括弧の表示秒数を3秒にする
+set matchtime=3          " 対応括弧の表示秒数を3秒にする
 set laststatus=2         " ステータスラインを常に表示
 set wrapscan             " 検索時に最後まで行ったら最初に戻る
-set title                " タイトルを表示
+set notitle              " タイトルを非表示
 set cursorline           " カーソルの行数表示
 set history=500          " 保存するコマンド履歴の数
 set timeout timeoutlen=1000 ttimeoutlen=50    " タイムアウト時間設定
