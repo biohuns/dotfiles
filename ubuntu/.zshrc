@@ -2,27 +2,25 @@
 ## ZSH Preferences ##
 #####################
 
+# global
 umask 022
 export PATH=${HOME}/bin:/usr/local/bin:${PATH}
 
-# ZPlug
-export ZPLUG_HOME=$HOME/.zplug
-source $ZPLUG_HOME/init.zsh
+# tmux
+alias tm='tmux'
+alias tma='tmux a'
+alias tmn='tmux new'
+alias tml='tmux ls'
+alias tmr='tmux source-file ~/.tmux.conf'
 
-# SSH Agent
+if [[ -z "$TMUX" ]]; then
+    tmux new-session
+    exit
+fi
+
+# ssh agent
 eval `ssh-agent`
 ssh-add -q ~/.ssh/keys/*
-
-# Go
-export GOPATH="$HOME"
-
-# NodeJS
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-
-# PHP
-export PATH=${HOME}/.composer/vendor/bin:${PATH}
 
 #############
 ## History ##
@@ -45,50 +43,68 @@ setopt inc_append_history # 履歴をインクリメンタルに追加
 ## Plugins ##
 #############
 
+# ZPlug
+export ZPLUG_HOME=$HOME/.zplug
+source $ZPLUG_HOME/init.zsh
+
 # memo
-zplug "mattn/memo", use:misc/completion.zsh
+zplug 'mattn/memo', use:'misc/completion.zsh'
+alias m='memo'
 
 # fzf
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
-zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+zplug 'junegunn/fzf-bin', as:command, from:gh-r, rename-to:fzf
+zplug 'junegunn/fzf', as:command, use:'bin/fzf-tmux'
+
+# ghq
+zplug 'x-motemen/ghq', as:command, from:gh-r
+
+# jq
+zplug 'stedolan/jq', as:command,  from:gh-r
 
 # powerline-shell
-zplug "b-ryan/powerline-shell"
+zplug 'b-ryan/powerline-shell'
+
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh $?)"
 }
+
 function install_powerline_precmd() {
   for s in ${precmd_functions[@]}; do
-    if [ "$s" = "powerline_precmd" ]; then
+    if [ "$s" = 'powerline_precmd' ]; then
       return
     fi
   done
   precmd_functions+=(powerline_precmd)
 }
-if [ "$TERM" != "linux" ]; then
+
+if [ "$TERM" != 'linux' ]; then
     install_powerline_precmd
 fi
 
-# zsh-autosuggestions
-zplug "zsh-users/zsh-autosuggestions"
+# zsh
+zplug 'zsh-users/zsh-autosuggestions'
+zplug "zsh-users/zsh-history-substring-search"
+zplug 'zsh-users/zsh-completions'
+zplug 'zsh-users/zsh-syntax-highlighting'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=75'
-
-# zsh-completions
-zplug "zsh-users/zsh-completions"
-
-# zsh-syntax-highlight
-zplug "zsh-users/zsh-syntax-highlighting"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 # anyframe
-zplug "mollifier/anyframe"
-zstyle ":anyframe:selector:" use fzf
+zplug 'mollifier/anyframe'
+zstyle ':anyframe:selector:' use fzf
 bindkey '^R' anyframe-widget-put-history
 bindkey '^]' anyframe-widget-cd-ghq-repository
 
 # docker-zsh-completion
 zplug 'felixr/docker-zsh-completion'
 
+# node
+zplug 'lukechilds/zsh-nvm'
+
+# Go
+export GOPATH="$HOME"
+
+# ssh
 complete-ssh-host() {
     local host="$(command egrep -i '^Host\s+.+' $HOME/.ssh/config $(find $HOME/.ssh/conf.d -type f 2>/dev/null) | command egrep -v '[*?]' | awk '{print $2}' | sort | fzf)"
 
@@ -110,30 +126,14 @@ alias ls='ls -G'
 alias l='ls'
 alias ll='ls -l'
 alias la='ls -la'
-alias pbc='pbcopy'
 alias tree='tree -N'
-
-# tmux
-alias tm='tmux'
-alias tma='tmux a'
-alias tmn='tmux new'
-alias tml='tmux ls'
-alias tmr='tmux source-file ~/.tmux.conf'
 
 # git
 alias g="git"
-alias tig='TERM=xterm-256color tig'
-alias t="tig"
+alias t="TERM=xterm-256color tig"
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
-alias m='memo'
-
-# window size
-alias max="printf '\e[9;1t'"
-alias mid="printf '\e[8;28;100t'"
-alias min="printf '\e[8;24;80t'"
-
-# AWS
+# aws
 alias instances="aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | {\"InstanceID\": .InstanceId, \"Name\": (.Tags[] | select(.Key == \"Name\").Value)} | @text' | fzf | sed -e 's/.*\"InstanceID\":\"\(.*\)\",\"Name\":.*/\1/' | tr -d '\n' | pbcopy"
 
 #############
@@ -149,5 +149,3 @@ if ! zplug check --verbose; then
 else
     zplug load
 fi
-
-autoload -Uz compinit && compinit
