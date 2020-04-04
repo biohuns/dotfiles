@@ -3,7 +3,6 @@
 #####################
 
 # global
-umask 022
 export PATH=${HOME}/bin:/usr/local/bin:${PATH}
 
 # tmux
@@ -14,20 +13,20 @@ alias tml='tmux ls'
 alias tmr='tmux source-file ~/.tmux.conf'
 
 if [[ -z "$TMUX" ]]; then
-    tmux new-session
+    tmux new -A -s Default
     exit
 fi
 
 # ssh agent
-eval `ssh-agent`
-ssh-add -q ~/.ssh/keys/*
+#eval `ssh-agent`
+#ssh-add -q ~/.ssh/keys/*
 
 #############
 ## History ##
 #############
 
-HISTSIZE=1000000 # メモリに保存される履歴の件数。(保存数だけ履歴を検索できる)
-SAVEHIST=1000000 # ファイルに何件保存するか
+export HISTSIZE=1000000 # メモリに保存される履歴の件数。(保存数だけ履歴を検索できる)
+export SAVEHIST=1000000 # ファイルに何件保存するか
 setopt extended_history # 実行時間とかも保存する
 setopt share_history # 別のターミナルでも履歴を参照できるようにする
 setopt hist_ignore_all_dups # 過去に同じ履歴が存在する場合、古い履歴を削除し重複しない
@@ -122,7 +121,7 @@ bindkey '^w' complete-ssh-host
 
 # general commands
 alias ..='cd ..'
-alias ls='ls -G'
+alias ls='ls -F --color=auto'
 alias l='ls'
 alias ll='ls -l'
 alias la='ls -la'
