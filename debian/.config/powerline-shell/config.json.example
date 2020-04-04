@@ -6,5 +6,5 @@
     "cwd": {
         "max_depth": 1
     },
-    "theme": "~/.zplug/repos/b-ryan/powerline-shell/powerline_shell/themes/default.py"
+    "theme": ""
 }

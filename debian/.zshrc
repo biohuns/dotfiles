@@ -2,6 +2,9 @@
 ## ZSH Preferences ##
 #####################
 
+# default permission
+umask 022
+
 # global
 export PATH=${HOME}/bin:/usr/local/bin:${PATH}
 
@@ -56,12 +59,6 @@ zplug 'junegunn/fzf', as:command, use:'bin/fzf-tmux'
 
 # ghq
 zplug 'x-motemen/ghq', as:command, from:gh-r
-
-# jq
-zplug 'stedolan/jq', as:command,  from:gh-r
-
-# powerline-shell
-zplug 'b-ryan/powerline-shell'
 
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh $?)"
