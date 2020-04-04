@@ -81,9 +81,9 @@ fi
 zplug 'zsh-users/zsh-autosuggestions'
 zplug "zsh-users/zsh-history-substring-search"
 zplug 'zsh-users/zsh-completions'
-zplug 'zsh-users/zsh-syntax-highlighting'
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=75'
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=75'
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 # anyframe
 zplug 'mollifier/anyframe'

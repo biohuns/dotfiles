@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 set -eu
-umask 022
+umask 0022
 
 GIT_ROOT=$(cd "$(dirname "$0")" && pwd)
 USR_BIN_DIR=/usr/local/bin
 
-DEPENDENCIES='zsh git vim curl tmux python python-pip tig make shellcheck jq'
+DEPENDENCIES='zsh git vim curl tmux python python-pip tig make shellcheck gawk'
+JQ_BIN='https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64'
 
 VIM_COLOR_DIR=.vim/colors
 VIM_COLOR_SRC=https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim
@@ -47,6 +48,12 @@ create_symlink() {
 
 # shellcheck disable=SC2086
 sudo apt install -y $DEPENDENCIES
+
+if [[ ! -e $USR_BIN_DIR/jq ]]; then
+    sudo curl -L $JQ_BIN -o $USR_BIN_DIR/jq
+    sudo chmod +x $USR_BIN_DIR/jq
+fi
+require jq
 
 # Create File
 
