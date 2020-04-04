@@ -6,7 +6,7 @@ umask 0022
 GIT_ROOT=$(cd "$(dirname "$0")" && pwd)
 USR_BIN_DIR=/usr/local/bin
 
-DEPENDENCIES='zsh git vim curl tmux python python-pip tig make shellcheck gawk'
+DEPENDENCIES='zsh git vim curl tmux python python-pip tig make shellcheck gawk man golang-1.14 unzip'
 JQ_BIN='https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64'
 
 VIM_COLOR_DIR=.vim/colors

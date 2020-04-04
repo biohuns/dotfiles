@@ -8,8 +8,10 @@ umask 022
 # global
 export PATH=${HOME}/bin:/usr/local/bin:${PATH}
 
+# golang
+export PATH="/usr/lib/go-1.14/bin:$PATH"
+
 # tmux
-alias tm='tmux'
 alias tma='tmux a'
 alias tmn='tmux new'
 alias tml='tmux ls'
@@ -28,6 +30,7 @@ fi
 ## History ##
 #############
 
+export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=1000000 # メモリに保存される履歴の件数。(保存数だけ履歴を検索できる)
 export SAVEHIST=1000000 # ファイルに何件保存するか
 setopt extended_history # 実行時間とかも保存する
@@ -38,19 +41,19 @@ setopt hist_verify # ヒストリを呼び出してから実行する間に一�
 setopt hist_reduce_blanks #余分なスペースを削除してヒストリに記録する
 setopt hist_save_no_dups # histryコマンドは残さない
 setopt hist_expire_dups_first # 古い履歴を削除する必要がある場合、まず重複しているものから削除
-setopt hist_expand # 補完時にヒストリを自動的に展開すã
+setopt hist_expand # 補完時にヒストリを自動的に展開する
 setopt inc_append_history # 履歴をインクリメンタルに追加
 
 #############
 ## Plugins ##
 #############
 
-# ZPlug
-export ZPLUG_HOME=$HOME/.zplug
-source $ZPLUG_HOME/init.zsh
+# zplug
+source $HOME/.zplug/init.zsh
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # memo
-zplug 'mattn/memo', use:'misc/completion.zsh'
+zplug "mattn/memo", hook-build:'go install', use:'misc/zsh-completion/completion.zsh'
 alias m='memo'
 
 # fzf
@@ -58,7 +61,7 @@ zplug 'junegunn/fzf-bin', as:command, from:gh-r, rename-to:fzf
 zplug 'junegunn/fzf', as:command, use:'bin/fzf-tmux'
 
 # ghq
-zplug 'x-motemen/ghq', as:command, from:gh-r
+zplug 'x-motemen/ghq', as:command, from:gh-r, rename-to:ghq
 
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh $?)"
