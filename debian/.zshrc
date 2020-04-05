@@ -6,10 +6,13 @@
 umask 022
 
 # global
-export PATH=${HOME}/bin:/usr/local/bin:${PATH}
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # golang
 export PATH="/usr/lib/go-1.14/bin:$PATH"
+
+# yarn
+export PATH="$HOME/.yarn/bin:$PATH"
 
 # tmux
 alias tma='tmux a'
@@ -18,8 +21,13 @@ alias tml='tmux ls'
 alias tmr='tmux source-file ~/.tmux.conf'
 
 if [[ -z "$TMUX" ]]; then
-    tmux new -A -s Default
-    exit
+    if [[ $VSCODE_IPC_HOOK_CLI == "" ]]; then
+        tmux new -A -s Default
+        exit
+    else
+        tmux new -A -s "$(echo $VSCODE_IPC_HOOK_CLI | rev | cut -d'/' -f1 | rev | cut -d'.' -f1)"
+        exit
+    fi
 fi
 
 # ssh agent
