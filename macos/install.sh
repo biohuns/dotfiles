@@ -1,118 +1,93 @@
 #!/usr/bin/env bash
 
 set -eu
+umask 0022
 
-DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+BIN='/usr/local/bin'
 
 ###############
 ## Functions ##
 ###############
 
-complete () {
-    echo "complete: $1"
+green_message() {
+    printf '\033[32m%s\033[m\n' "$1"
 }
 
-require () {
+require() {
     for c in "$@"; do
-        type "$c" > /dev/null
+        type "$c" >/dev/null
     done
 }
 
-create_symlink () {
-    ln -snfv "$DIR/$1" "$HOME"/"$1" > /dev/null
-    complete "$1"
+create_symlink() {
+    ln -snf "$ROOT/$1" "$HOME/$1" >/dev/null
+    green_message "mklink:   $1"
 }
-
-TOUCH_FILES=(
-    .gitaccounts
-    .config/git/mailmap
-)
 
 ###############
 ##  Install  ##
 ###############
 
-## Create File ##
+# create file
 
-for file in "${TOUCH_FILES[@]}"
-do
-    if [[ ! -e $DIR/$file  ]]; then
-        touch "$DIR/$file"
-        echo "create:   $file"
-    fi
-done
+# vim
+create_symlink .vimrc
+mkdir -p "$HOME/.vim/colors"
+VIM_COLOR_SRC='https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim'
+curl -s $VIM_COLOR_SRC -o "$HOME/.vim/colors/darcula.vim"
+green_message "mklink:   .vim/colors"
 
-## Make Symlink ##
+# git
+create_symlink .gitconfig
+[[ ! -e $ROOT/.gitaccount ]] && cp "$ROOT"/.gitaccount{.example,}
+create_symlink .gitaccount
+mkdir -p "$HOME/.config/git"
+create_symlink ".config/git/attributes"
+create_symlink ".config/git/ignore"
 
-cd "$DIR" &&
-for f in .??*
-do
-    [[ "$f" = ".DS_Store"  ]] && continue
-    [[ "$f" = ".circleci"  ]] && continue
-    [[ "$f" = ".config"    ]] && continue
-    [[ "$f" = ".git"       ]] && continue
-    [[ "$f" = ".gitignore" ]] && continue
-    [[ "$f" = *".example"  ]] && continue
+# diff-highlight
+DH_SRC='/usr/local/share/git-core/contrib/diff-highlight/diff-highlight'
+DH_DST="$BIN/diff-highlight"
+sudo ln -snf $DH_SRC $DH_DST
+require diff-highlight
+green_message 'mklink:   diff-highlight'
 
-    create_symlink "$f"
-done
+# powerline-shell
 
-## Vim ##
-
-THEME="https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim"
-if [[ ! -e $HOME/.vim/colors/darcula.vim ]]; then
-    mkdir -p "$HOME/.vim/colors"
-    curl -s $THEME -o ~/.vim/colors/darcula.vim
-fi
-
-complete ".vim/colors"
-
-## Git ##
-
-if [[ ! -e $HOME/.config/git ]]; then
-    mkdir -p "$HOME/.config/git"
-fi
-
-cd "$DIR" &&
-for f in .config/git/*
-do
-    create_symlink "$f"
-done
-
-if [[ ! -e /usr/local/bin/diff-highlight ]]; then
-    ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
-fi
-
-## powerline-shell ##
-
+pip3 install -qU powerline-shell
 require powerline-shell
-if [[ ! -e $HOME/.config/powerline-shell ]]; then
-    mkdir -p "$HOME/.config/powerline-shell"
-fi
+green_message 'install:  powerline-shell'
 
-cd "$DIR" &&
-for f in .config/powerline-shell/*
-do
-    create_symlink "$f"
-done
+PS_THEME=$(pip3 show powerline-shell | grep Location | cut -d' ' -f2)/powerline_shell/themes/default.py
+jq ".theme=\"$PS_THEME\"" \
+    "$ROOT/.config/powerline-shell/config.json.example" \
+    > "$ROOT/.config/powerline-shell/config.json"
+mkdir -p "$HOME/.config/powerline-shell"
+create_symlink .config/powerline-shell/config.json
 
-## Karabiner-Elements
+# karabiner-elements
+mkdir -p "$HOME/.config/karabiner"
+create_symlink .config/karabiner
 
-if [[ ! -e $HOME/.config/karabiner ]]; then
-    mkdir -p "$HOME/.config/karabiner"
-fi
+# make other symlinks
+create_symlink .zshrc
+create_symlink .tigrc
+create_symlink .tmux.conf
+create_symlink .gemrc
+create_symlink .digrc
 
-cd "$DIR" &&
-for f in .config/karabiner/*
-do
-    create_symlink "$f"
-done
-
-## Set Shell ##
-
+# set shell
 if [[ "$SHELL" != "$(command -v zsh)" ]]; then
     chsh -s "$(command -v zsh)"
     zsh
 fi
 
-echo "Success!"
+# zplug
+ZPLUG_DIR="$HOME/.zplug"
+if [[ ! -e $ZPLUG_DIR ]]; then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
+
+green_message "Success!"
+exit 0
