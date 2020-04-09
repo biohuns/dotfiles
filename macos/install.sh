@@ -68,7 +68,7 @@ create_symlink .config/powerline-shell/config.json
 
 # karabiner-elements
 mkdir -p "$HOME/.config/karabiner"
-create_symlink .config/karabiner
+create_symlink .config/karabiner/karabiner.json
 
 # make other symlinks
 create_symlink .zshrc
