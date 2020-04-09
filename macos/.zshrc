@@ -22,7 +22,8 @@ if [[ -z "$TMUX" ]]; then
 fi
 
 # ssh agent
-ssh-add -qK ~/.ssh/id_rsa
+[[ -e $HOME/.ssh/id_rsa ]] && ssh-add -qK ~/.ssh/id_rsa
+[[ -e $HOME/.ssh/keys ]] && ssh-add -qK ~/.ssh/keys/*
 
 # Go
 export GOPATH="$HOME"
