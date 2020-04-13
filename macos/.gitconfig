@@ -5,7 +5,6 @@
     b = branch
     ba = branch -a
     bd = branch -d
-    bD = branch -D
     c = commit
     ca = commit --amend
     can = commit -n --amend
