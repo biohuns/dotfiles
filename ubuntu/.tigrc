@@ -1,0 +1,107 @@
+###################
+### TIG SETTING ###
+###################
+
+# See: http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+# See: http://jonas.nitro.dk/tig/tigrc.5.html
+
+##############
+### GLOBAL ###
+##############
+
+# utf-8 文字で画面描画する (~でトグル)
+set line-graphics = utf-8
+
+# タブサイズ
+set tab-size = 4
+
+# 空白無視
+# set ignore-space = all
+
+# 空白無視 (status-view では表示するが diff-view では無視する) (W でトグル)
+set ignore-space = at-eol
+
+# 検索時に大文字小文字を無視する (default: false)
+set ignore-case = true
+
+# リフレッシュするタイミング
+set refresh-mode = auto
+set refresh-mode = after-command
+set refresh-mode = periodic
+set refresh-interval = 1
+
+# '+行数' の形で Editor に行番号を引数として渡すか
+set editor-line-number = yes
+
+# マウス有効化
+set mouse = true
+
+#################
+### MAIN VIEW ###
+#################
+
+set main-view = id date author commit-title:graph=yes,refs=yes
+set main-view-date = custom
+set main-view-date-format = "%Y/%m/%d %H:%M"
+
+##################
+### SPLIT VIEW ###
+##################
+
+# 水平分割したウィンドウの下画面サイズを % で指定（行数指定も可）
+set split-view-height = 80%
+
+# マージ diff を表示する
+#set diff-highlight = true
+set diff-options = -m --first-parent
+
+################
+### SHORTCUT ###
+################
+
+bind generic y @sh -c "echo %(commit) | clip.exe"
+
+#############
+### COLOR ###
+#############
+
+# Area                  Foreground      Background         Options
+# ==============================================================================
+
+# Main UI
+# ==============================================================================
+color default           250             234
+color 'Author '         15              default
+color 'Commit: '        242             default
+color 'Merge: '         45              default
+color id                167             default
+color date              242             default
+color graph-commit      161             default
+color status            15              default
+color delimiter         90              default
+color cursor            234             7
+
+# Help Page
+# ==============================================================================
+color help-group        161             default
+
+# Current Line
+# ==============================================================================
+color main-tracked      105             default             bold
+
+# Current Line
+# ==============================================================================
+color cursor            234             7
+
+# Bottom Statusbar
+# ==============================================================================
+color title-focus       234             250
+color title-blur        234             250
+
+# File Diffs
+# ==============================================================================
+color diff-stat         45              default
+color diff-index        14              default
+color diff-add          40              default
+color diff-del          161             default
+color diff-chunk        190             default

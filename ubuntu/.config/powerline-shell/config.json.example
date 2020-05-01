@@ -1,0 +1,10 @@
+{
+    "segments": [
+        "cwd",
+        "git"
+    ],
+    "cwd": {
+        "max_depth": 1
+    },
+    "theme": ""
+}
