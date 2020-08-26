@@ -11,22 +11,14 @@ alias tmn='tmux new'
 alias tml='tmux ls'
 alias tmr='tmux source-file ~/.tmux.conf'
 
-if [[ -z "$TMUX" ]]; then
-    if [[ $VSCODE_IPC_HOOK_CLI == "" ]]; then
-        tmux new -A -s 'Default'
-        exit
-    else
-        tmux new -A -s "$(echo "$VSCODE_IPC_HOOK_CLI" | rev | cut -d'/' -f1 | rev | cut -d'.' -f1)"
-        exit
-    fi
-fi
-
 # ssh agent
 [[ -e $HOME/.ssh/id_rsa ]] && ssh-add -qK ~/.ssh/id_rsa
 [[ -e $HOME/.ssh/keys ]] && ssh-add -qK ~/.ssh/keys/*
 
 # Go
 export GOPATH="$HOME"
+
+eval "$(rbenv init -)"
 
 #############
 ## History ##

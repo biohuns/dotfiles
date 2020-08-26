@@ -18,8 +18,8 @@
     df = diff --word-diff=color
     fix-lfs= !git status -s | cut -c 4- | xargs git update-index --assume-unchanged
     onto = rebase --onto
-    onto-m = rebase --onto master
-    onto-d = rebase --onto develop
+    ontom = rebase --onto master
+    ontod = rebase --onto develop
     pl = pull
     pop = stash pop
     pr = "!f(){ git fetch upstream pull/$1/head:$1; git checkout $1; };f"
