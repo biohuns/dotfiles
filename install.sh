@@ -54,7 +54,6 @@ require diff-highlight
 green_message 'mklink:   diff-highlight'
 
 # powerline-shell
-
 pip3 install -qU powerline-shell
 require powerline-shell
 green_message 'install:  powerline-shell'
