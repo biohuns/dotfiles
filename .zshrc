@@ -59,16 +59,18 @@ zplug 'x-motemen/ghq', as:command, from:gh-r, rename-to:ghq
 
 # powerline-shell
 function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
+    PS1="$($GOPATH/bin/powerline-go -error $? -shell zsh -hostname-only-if-ssh)"
 }
+
 function install_powerline_precmd() {
-  for s in ${precmd_functions[@]}; do
+  for s in "${precmd_functions[@]}"; do
     if [ "$s" = "powerline_precmd" ]; then
       return
     fi
   done
   precmd_functions+=(powerline_precmd)
 }
+
 if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
