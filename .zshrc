@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 #####################
 ## ZSH Preferences ##
 #####################
@@ -16,6 +18,7 @@ alias tmr='tmux source-file ~/.tmux.conf'
 [[ -e $HOME/.ssh/keys ]] && ssh-add -qK ~/.ssh/keys/*
 
 # Go
+export PATH=/usr/local/go/bin:$PATH
 export GOPATH="$HOME"
 
 eval "$(rbenv init -)"
@@ -43,12 +46,9 @@ setopt inc_append_history # 履歴をインクリメンタルに追加
 #############
 
 # zplug
-source $HOME/.zplug/init.zsh
+# shellcheck source=/dev/null
+source "$HOME/.zplug/init.zsh"
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
-# memo
-zplug "mattn/memo", hook-build:'go install', use:'misc/zsh-completion/completion.zsh'
-alias m='memo'
 
 # fzf
 zplug 'junegunn/fzf-bin', as:command, from:gh-r, rename-to:fzf
@@ -59,7 +59,7 @@ zplug 'x-motemen/ghq', as:command, from:gh-r, rename-to:ghq
 
 # powerline-shell
 function powerline_precmd() {
-    PS1="$($GOPATH/bin/powerline-go -error $? -shell zsh -hostname-only-if-ssh)"
+    PS1="$("$GOPATH/bin/powerline-go" -error $? -shell zsh -hostname-only-if-ssh)"
 }
 
 function install_powerline_precmd() {
@@ -96,12 +96,13 @@ zplug 'felixr/docker-zsh-completion'
 zplug 'lukechilds/zsh-nvm'
 
 # Go
-export GOPATH="$HOME"
+export GOPATH=$HOME
 
 complete-ssh-host() {
-    local host="$(command egrep -i '^Host\s+.+' $HOME/.ssh/config $(find $HOME/.ssh/conf.d -type f 2>/dev/null) | command egrep -v '[*?]' | awk '{print $2}' | sort | fzf)"
+    local host
+    host="$(command egrep -i '^Host\s+.+' "$HOME/.ssh/config" "$(find "$HOME/.ssh/conf.d" -type f 2>/dev/null)" | command egrep -v '[*?]' | awk '{print $2}' | sort | fzf)"
 
-    if [ ! -z "$host" ]; then
+    if [ -n "$host" ]; then
         LBUFFER+="ssh $host"
     fi
     zle reset-prompt
@@ -129,11 +130,6 @@ alias t="tig"
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
 alias m='memo'
-
-# window size
-alias max="printf '\e[9;1t'"
-alias mid="printf '\e[8;28;100t'"
-alias min="printf '\e[8;24;80t'"
 
 # aws
 alias instances="aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | {\"InstanceID\": .InstanceId, \"Name\": (.Tags[] | select(.Key == \"Name\").Value)} | @text' | fzf | sed -e 's/.*\"InstanceID\":\"\(.*\)\",\"Name\":.*/\1/' | tr -d '\n' | pbcopy"
