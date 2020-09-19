@@ -67,9 +67,7 @@
     diff = diff-highlight | less
     log = diff-highlight | less
     show = diff-highlight | less
-[mailmap]
-    file = ~/.config/git/mailmap
-[log]
-    mailmap = true
+[user]
+    useConfigOnly = true
 [include]
     path = ~/.gitaccount
