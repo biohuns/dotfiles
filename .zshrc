@@ -21,8 +21,6 @@ alias tmr='tmux source-file ~/.tmux.conf'
 export PATH=/usr/local/go/bin:$PATH
 export GOPATH="$HOME"
 
-eval "$(rbenv init -)"
-
 #############
 ## History ##
 #############

@@ -53,18 +53,6 @@ sudo ln -snf $DH_SRC $DH_DST
 require diff-highlight
 green_message 'mklink:   diff-highlight'
 
-# powerline-shell
-pip3 install -qU powerline-shell
-require powerline-shell
-green_message 'install:  powerline-shell'
-
-PS_THEME=$(pip3 show powerline-shell | grep Location | cut -d' ' -f2)/powerline_shell/themes/default.py
-jq ".theme=\"$PS_THEME\"" \
-    "$ROOT/.config/powerline-shell/config.json.example" \
-    > "$ROOT/.config/powerline-shell/config.json"
-mkdir -p "$HOME/.config/powerline-shell"
-create_symlink .config/powerline-shell/config.json
-
 # karabiner-elements
 mkdir -p "$HOME/.config/karabiner"
 create_symlink .config/karabiner/karabiner.json

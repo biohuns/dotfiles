@@ -59,7 +59,7 @@ set diff-options = -m --first-parent
 ### SHORTCUT ###
 ################
 
-bind generic y @sh -c "echo %(commit) | pbcopy"
+bind generic y @sh -c "/bin/echo -n %(commit) | pbcopy"
 
 #############
 ### COLOR ###
