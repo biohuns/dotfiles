@@ -26,18 +26,18 @@ export GOPATH="$HOME"
 #############
 
 export HISTFILE=${HOME}/.zsh_history
-export HISTSIZE=1000000 # メモリに保存される履歴の件数。(保存数だけ履歴を検索できる)
-export SAVEHIST=1000000 # ファイルに何件保存するか
-setopt extended_history # 実行時間とかも保存する
-setopt share_history # 別のターミナルでも履歴を参照できるようにする
-setopt hist_ignore_all_dups # 過去に同じ履歴が存在する場合、古い履歴を削除し重複しない
-setopt hist_ignore_space # コマンド先頭スペースの場合保存しない
-setopt hist_verify # ヒストリを呼び出してから実行する間に一旦編集できる状態になる
-setopt hist_reduce_blanks #余分なスペースを削除してヒストリに記録する
-setopt hist_save_no_dups # histryコマンドは残さない
+export HISTSIZE=1000000       # メモリに保存される履歴の件数。(保存数だけ履歴を検索できる)
+export SAVEHIST=1000000       # ファイルに何件保存するか
+setopt extended_history       # 実行時間とかも保存する
+setopt share_history          # 別のターミナルでも履歴を参照できるようにする
+setopt hist_ignore_all_dups   # 過去に同じ履歴が存在する場合、古い履歴を削除し重複しない
+setopt hist_ignore_space      # コマンド先頭スペースの場合保存しない
+setopt hist_verify            # ヒストリを呼び出してから実行する間に一旦編集できる状態になる
+setopt hist_reduce_blanks     # 余分なスペースを削除してヒストリに記録する
+setopt hist_save_no_dups      # histryコマンドは残さない
 setopt hist_expire_dups_first # 古い履歴を削除する必要がある場合、まず重複しているものから削除
-setopt hist_expand # 補完時にヒストリを自動的に展開すã
-setopt inc_append_history # 履歴をインクリメンタルに追加
+setopt hist_expand            # 補完時にヒストリを自動的に展開すã
+setopt inc_append_history     # 履歴をインクリメンタルに追加
 
 #############
 ## Plugins ##
@@ -57,16 +57,21 @@ zplug 'x-motemen/ghq', as:command, from:gh-r, rename-to:ghq
 
 # powerline-shell
 function powerline_precmd() {
-    PS1="$("$GOPATH/bin/powerline-go" -error $? -shell zsh -hostname-only-if-ssh)"
+    PS1="$("$GOPATH/bin/powerline-go" \
+        -error $? \
+        -shell zsh \
+        -hostname-only-if-ssh \
+        -cwd-mode plain \
+        -numeric-exit-codes)"
 }
 
 function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
+    for s in "${precmd_functions[@]}"; do
+        if [ "$s" = "powerline_precmd" ]; then
+            return
+        fi
+    done
+    precmd_functions+=(powerline_precmd)
 }
 
 if [ "$TERM" != "linux" ]; then
@@ -98,7 +103,11 @@ export GOPATH=$HOME
 
 complete-ssh-host() {
     local host
-    host="$(command egrep -i '^Host\s+.+' "$HOME/.ssh/config" "$(find "$HOME/.ssh/conf.d" -type f 2>/dev/null)" | command egrep -v '[*?]' | awk '{print $2}' | sort | fzf)"
+    host="$(command egrep -i '^Host\s+.+' "$HOME/.ssh/config" "$(find "$HOME/.ssh/conf.d" -type f 2>/dev/null)" |
+        command egrep -v '[*?]' |
+        awk '{print $2}' |
+        sort |
+        fzf)"
 
     if [ -n "$host" ]; then
         LBUFFER+="ssh $host"
@@ -139,7 +148,8 @@ alias instances="aws ec2 describe-instances | jq -r '.Reservations[].Instances[]
 if ! zplug check --verbose; then
     printf 'Install? [y/N]: '
     if read -rq; then
-        echo; zplug install
+        echo
+        zplug install
     fi
     zplug load --verbose
 else
