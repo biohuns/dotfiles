@@ -57,7 +57,7 @@ zplug 'x-motemen/ghq', as:command, from:gh-r, rename-to:ghq
 
 # powerline-shell
 function powerline_precmd() {
-    PS1="$("$GOPATH/bin/powerline-go" \
+    PS1="$("$HOME/bin/powerline-go" \
         -error $? \
         -shell zsh \
         -hostname-only-if-ssh \

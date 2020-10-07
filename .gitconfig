@@ -71,3 +71,5 @@
     useConfigOnly = true
 [include]
     path = ~/.gitaccount
+[pull]
+	rebase = false
