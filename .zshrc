@@ -21,6 +21,9 @@ alias tmr='tmux source-file ~/.tmux.conf'
 export PATH=/usr/local/go/bin:$PATH
 export GOPATH="$HOME"
 
+# PHP
+export PATH=$HOME/.composer/vendor/bin:$PATH
+
 #############
 ## History ##
 #############
@@ -61,7 +64,7 @@ function powerline_precmd() {
         -error $? \
         -shell zsh \
         -hostname-only-if-ssh \
-        -cwd-mode plain \
+        -cwd-max-depth 4 \
         -numeric-exit-codes)"
 }
 
