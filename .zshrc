@@ -22,7 +22,10 @@ export PATH=/usr/local/go/bin:$PATH
 export GOPATH="$HOME"
 
 # PHP
+export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
 export PATH=$HOME/.composer/vendor/bin:$PATH
+alias sail='bash vendor/bin/sail'
 
 #############
 ## History ##
@@ -128,8 +131,8 @@ bindkey '^w' complete-ssh-host
 alias ..='cd ..'
 alias ls='ls -G'
 alias l='ls'
-alias ll='ls -l'
-alias la='ls -la'
+alias ll='ls -lh'
+alias la='ls -lha'
 alias pbc='pbcopy'
 alias tree='tree -N'
 
