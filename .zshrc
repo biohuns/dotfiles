@@ -14,8 +14,8 @@ alias tml='tmux ls'
 alias tmr='tmux source-file ~/.tmux.conf'
 
 # ssh agent
-[[ -e $HOME/.ssh/id_rsa ]] && ssh-add -qK ~/.ssh/id_rsa
-[[ -e $HOME/.ssh/keys ]] && ssh-add -qK ~/.ssh/keys/*
+[[ -e $HOME/.ssh/id_rsa ]] && ssh-add -q --apple-use-keychain ~/.ssh/id_rsa
+[[ -e $HOME/.ssh/keys ]] && ssh-add -q --apple-use-keychain ~/.ssh/keys/*
 
 # Go
 export PATH=/usr/local/go/bin:$PATH
