@@ -1,7 +1,6 @@
 [alias]
     a = add
     abort = rebase --abort
-    af = log --pretty=oneline --name-only
     b = branch
     ba = branch -a
     bd = branch -d
@@ -11,12 +10,10 @@
     cn = commit -n
     co = checkout
     cob = checkout -b
-    cod = checkout develop
     com = checkout main
     continue = rebase --continue
     cp = cherry-pick
     df = diff --word-diff=color
-    fix-lfs= !git status -s | cut -c 4- | xargs git update-index --assume-unchanged
     onto = rebase --onto
     ontom = rebase --onto main
     ontod = rebase --onto develop
@@ -24,18 +21,11 @@
     pop = stash pop
     pr = "!f(){ git fetch upstream pull/$1/head:$1; git checkout $1; };f"
     prc = !git com && git pl && git remote prune origin | grep \"pruned\" | awk \"{print \\$3}\" | sed \"s/origin\\///\" | xargs git b -d && git ba
-    prcd = !git co develop && git pl && git remote prune origin | grep \"pruned\" | awk \"{print \\$3}\" | sed \"s/origin\\///\" | xargs git b -d && git ba
     ps = push
     pso = !git branch --contains | awk '{print $2}' | xargs git push -u origin
     psu = push -u
-    rb = rebase -i
-    rbp = rebase -ip
     refresh = !git rm -r --cached . && git add .
     root = rev-parse --show-toplevel
-    rom = reset --hard origin/main
-    rod = reset --hard origin/develop
-    rum = reset --hard upstream/main
-    rud = reset --hard upstream/develop
     st = stash
 [color]
     ui = auto
@@ -45,33 +35,22 @@
     ignorecase = false
     precomposeunicode = true
     quotepath = false
-[diff "docx"]
-    binary = true
-    cachetextconv = true
-    textconv = docx2txt
-[diff "xlsx"]
-    binary = true
-    cachetextconv = true
-    textconv = ~/bin/git-xlsx-textconv
 [diff "json"]
     textconv = jq -S .
     cachetextconv = true
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    process = git-lfs filter-process
-    required = true
-    smudge = git-lfs smudge -- %f
 [ghq]
-    root = ~/src
+    root = ~/projects
 [pager]
     diff = diff-highlight | less
     log = diff-highlight | less
     show = diff-highlight | less
 [user]
     useConfigOnly = true
+    name = biohuns
+    email = 18520474+biohuns@users.noreply.github.com
 [include]
     path = ~/.gitaccount
 [pull]
-	rebase = false
+    rebase = false
 [init]
-	defaultBranch = main
+    defaultBranch = main

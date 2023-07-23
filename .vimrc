@@ -4,6 +4,7 @@
 
 syntax enable
 filetype plugin indent on
+" darcula theme: https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim
 colorscheme darcula
 
 " ##########################

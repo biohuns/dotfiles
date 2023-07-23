@@ -14,12 +14,6 @@ green_message() {
     printf '\033[32m%s\033[m\n' "$1"
 }
 
-require() {
-    for c in "$@"; do
-        type "$c" >/dev/null
-    done
-}
-
 create_symlink() {
     ln -snf "$ROOT/$1" "$HOME/$1" >/dev/null
     green_message "mklink:   $1"
@@ -32,49 +26,29 @@ create_symlink() {
 # create file
 
 # vim
-create_symlink .vimrc
 mkdir -p "$HOME/.vim/colors"
 VIM_COLOR_SRC='https://raw.githubusercontent.com/blueshirts/darcula/master/colors/darcula.vim'
 curl -s $VIM_COLOR_SRC -o "$HOME/.vim/colors/darcula.vim"
-green_message "mklink:   .vim/colors"
+create_symlink .vimrc
 
 # git
 create_symlink .gitconfig
-[[ ! -e $ROOT/.gitaccount ]] && cp "$ROOT"/.gitaccount{.example,}
-create_symlink .gitaccount
-mkdir -p "$HOME/.config/git"
-create_symlink ".config/git/attributes"
-create_symlink ".config/git/ignore"
+mkdir -p "$HOME/.config"
+create_symlink ".config/git"
 
 # diff-highlight
-DH_SRC='/usr/local/share/git-core/contrib/diff-highlight/diff-highlight'
+DH_SRC='/usr/share/doc/git/contrib/diff-highlight/diff-highlight'
 DH_DST="$BIN/diff-highlight"
-sudo ln -snf $DH_SRC $DH_DST
-require diff-highlight
-green_message 'mklink:   diff-highlight'
-
-# karabiner-elements
-mkdir -p "$HOME/.config/karabiner"
-create_symlink .config/karabiner/karabiner.json
+if [ ! -e $DH_DST ]; then
+    sudo ln -snf $DH_SRC $DH_DST
+    sudo chmod +x $DH_SRC
+    green_message 'mklink:   diff-highlight'
+fi
 
 # make other symlinks
-create_symlink .zshrc
+create_symlink .bashrc
 create_symlink .tigrc
 create_symlink .tmux.conf
-create_symlink .gemrc
-create_symlink .digrc
-
-# set shell
-if [[ "$SHELL" != "$(command -v zsh)" ]]; then
-    chsh -s "$(command -v zsh)"
-    zsh
-fi
-
-# zplug
-ZPLUG_DIR="$HOME/.zplug"
-if [[ ! -e $ZPLUG_DIR ]]; then
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-fi
 
 green_message "Success!"
 exit 0
