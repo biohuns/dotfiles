@@ -47,6 +47,7 @@ fi
 
 # make other symlinks
 create_symlink .bashrc
+create_symlink .bash_completion
 create_symlink .tigrc
 create_symlink .tmux.conf
 

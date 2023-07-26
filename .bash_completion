@@ -1,0 +1,8 @@
+_tm() {
+    local cur opts
+    _get_comp_words_by_ref -n : cur
+    opts=$(tmux -q list-sessions 2>/dev/null | cut -f 1 -d ':')
+
+    COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+}
+complete -F _tm tm

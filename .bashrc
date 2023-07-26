@@ -97,11 +97,14 @@ alias l='ls'
 alias ll='ls -lh'
 alias la='ls -lha'
 
-alias tm='tmux'
-alias tma='tmux a'
-alias tmn='tmux new'
-alias tml='tmux ls'
-alias tmr='tmux source-file ~/.tmux.conf'
+#alias tm='tmux'
+#alias tma='tmux a'
+#alias tmn='tmux new'
+#alias tml='tmux ls'
+#alias tmr='tmux source-file ~/.tmux.conf'
+tm () {
+    tmux attach -t $1 2> /dev/null || tmux new -s $1 2> /dev/null || tmux ls
+}
 
 alias g='git'
 alias tig='TERM=xterm-256color tig'
