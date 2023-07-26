@@ -108,6 +108,23 @@ alias tig='TERM=xterm-256color tig'
 alias t="tig"
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
+export GOPATH=$HOME
+export PATH=$HOME/bin:$PATH
+
+if [ -f ~/.config/bash/fzf/key-bindings.bash ]; then
+    . ~/.config/bash/fzf/key-bindings.bash
+    function fzf_pjc() {
+        local project_name=$(ghq list | sort | $(__fzfcmd))
+        if [ -n "$project_name" ]; then
+            local project_full_path=$(ghq root)/$project_name
+            local project_relative_path="~/$(realpath --relative-to=$HOME $project_full_path)"
+            READLINE_LINE="cd $project_relative_path"
+            READLINE_POINT=${#READLINE_LINE}
+        fi
+    }
+    bind -x '"\C-]": fzf_pjc'
+fi
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
