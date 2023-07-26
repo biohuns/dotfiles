@@ -39,7 +39,7 @@
     textconv = jq -S .
     cachetextconv = true
 [ghq]
-    root = ~/projects
+    root = ~/src
 [pager]
     diff = diff-highlight | less
     log = diff-highlight | less
